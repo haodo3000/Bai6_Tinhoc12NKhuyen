@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bài 6 – Giao tiếp và ứng xử trong không gian mạng | Tin học 12</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap');
+:root{--blue:#4C8DFF;--blue-dark:#2058b5;--yellow:#F4C542;--ink:#17243b;--muted:#5f6d82;--paper:#f4f8ff;--line:#dce7f7;--green:#16845b;--red:#b93838}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 "Be Vietnam Pro",Arial,sans-serif}button,input,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:12px;padding:12px 18px;font-weight:700;background:var(--blue);color:#fff;min-height:44px}button:hover{filter:brightness(.96)}button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}button.secondary{background:#e8f0ff;color:#214f9c}button.yellow{background:var(--yellow);color:#382b00}button:disabled{opacity:.45;cursor:not-allowed}a{color:var(--blue-dark)}.hero{background:linear-gradient(125deg,#2058b5,#4C8DFF);color:white;padding:30px max(20px,calc((100% - 1120px)/2)) 28px}.eyebrow{font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;opacity:.9}.hero h1{font-size:clamp(1.7rem,4vw,2.6rem);line-height:1.25;margin:.45rem 0}.hero p{max-width:780px;margin:0}.hero-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}.tag{background:#ffffff24;border:1px solid #ffffff50;border-radius:99px;padding:5px 11px;font-size:.88rem}.wrap{max-width:1120px;margin:auto;padding:22px 18px 50px}.nav{display:flex;gap:8px;flex-wrap:wrap;padding:12px;background:white;border:1px solid var(--line);border-radius:16px;margin-bottom:22px;position:sticky;top:8px;z-index:5;box-shadow:0 6px 22px #173e7010}.nav a{display:inline-block;text-decoration:none;padding:8px 12px;border-radius:10px;font-weight:600;color:#27446e}.nav a:hover{background:#eaf1ff}.js-enabled .nav a{display:none}.js-enabled .nav button{background:#edf3ff;color:#244c8c}.js-enabled .nav button.active{background:var(--blue);color:white}.section{background:white;border:1px solid var(--line);border-radius:20px;padding:clamp(18px,3vw,30px);margin:18px 0;box-shadow:0 8px 28px #173e7008}.js-enabled section:not(.active){display:none}.section h2{font-size:1.45rem;margin:0 0 14px;line-height:1.35}.section h3{font-size:1.08rem;margin:16px 0 8px}.muted{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.three{grid-template-columns:repeat(3,minmax(0,1fr))}.tile{border:1px solid var(--line);border-radius:16px;padding:16px;background:#fbfdff}.tile strong{display:block;margin-bottom:5px}.icon{font-size:1.5rem}.callout{background:#fff8db;border-left:5px solid var(--yellow);padding:14px 16px;border-radius:10px;margin:14px 0}.bluebox{background:#edf4ff;border-radius:14px;padding:15px}.choices{display:grid;gap:9px;margin:12px 0}.choice{text-align:left;background:#f4f7fc;border:1px solid #d9e3f2;color:var(--ink);font-weight:500}.choice:hover{background:#eaf1ff}.choice.correct{border:2px solid var(--green);background:#e8f8f0}.choice.wrong{border:2px solid var(--red);background:#fff0f0}.feedback{padding:12px 14px;border-radius:12px;margin:12px 0;background:#eef4ff}.feedback.good{background:#e8f8f0;color:#155f44}.feedback.bad{background:#fff0f0;color:#8b2525}.progress{height:10px;background:#e8eef7;border-radius:99px;overflow:hidden;margin:10px 0 16px}.progress span{display:block;height:100%;width:0;background:var(--blue);transition:width .2s}.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.row>*{max-width:100%}.scenario{border:1px solid var(--line);border-radius:16px;padding:16px;margin:12px 0}.scenario .bubble{background:#edf4ff;border-radius:14px;padding:12px 15px;margin:10px 0}.step{display:flex;gap:12px;align-items:flex-start;margin:12px 0}.stepnum{flex:0 0 34px;height:34px;border-radius:50%;background:var(--yellow);display:grid;place-items:center;font-weight:800}.mindmap{display:flex;flex-direction:column;align-items:center;gap:10px;padding:12px}.mindroot{background:var(--blue);color:white;padding:12px 18px;border-radius:14px;font-weight:800;text-align:center}.branches{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:100%}.branch{border:1px solid var(--line);border-radius:14px;padding:12px;text-align:center;background:#fbfdff}.branch b{display:block;color:var(--blue-dark)}.student-list{width:100%;min-height:100px;border:1px solid var(--line);border-radius:12px;padding:12px;resize:vertical}.wheel{width:190px;height:190px;border-radius:50%;border:8px solid #fff;outline:2px solid var(--line);margin:10px auto;display:grid;place-items:center;text-align:center;background:conic-gradient(#4C8DFF 0 25%,#F4C542 25% 50%,#8fc1ff 50% 75%,#b7d7ff 75%);color:#14294a;font-weight:800;overflow:hidden;padding:20px}.small{font-size:.9rem}.status{min-height:24px;color:var(--muted);font-size:.92rem}.score{font-size:1.4rem;font-weight:800;color:var(--blue-dark)}footer{text-align:center;color:var(--muted);padding:10px;font-size:.9rem}ul,ol{padding-left:1.3rem}li{margin:.3rem 0}@media(max-width:720px){.grid,.three,.branches{grid-template-columns:1fr}.nav{position:static}.hero{padding-top:24px}.wrap{padding-left:12px;padding-right:12px}.section{border-radius:15px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto;transition:none!important}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="eyebrow">CHỦ ĐỀ 3 · ĐẠO ĐỨC, PHÁP LUẬT VÀ VĂN HOÁ TRONG MÔI TRƯỜNG SỐ</div>
+  <h1>Bài 6. Giao tiếp và ứng xử trong không gian mạng</h1>
+  <p>Bài học tương tác Tin học 12 – cùng phân tích tình huống, lựa chọn cách ứng xử có trách nhiệm và tự đánh giá quyết định của mình.</p>
+  <div class="hero-tags"><span class="tag">⏱ 35–45 phút</span><span class="tag">🎯 Học qua tình huống</span><span class="tag">💬 Phản hồi tức thì</span></div>
+</header>
+<main class="wrap">
+<nav class="nav" aria-label="Điều hướng bài học">
+  <a href="#start">Khởi động</a><a href="#goals">Mục tiêu</a><a href="#knowledge">Kiến thức</a><a href="#practice">Thực hành</a><a href="#quiz">Luyện tập</a><a href="#summary">Tổng kết</a><a href="#teacher">Công cụ giáo viên</a>
+  <button type="button" id="tab-start" class="active">Khởi động</button><button type="button" id="tab-goals">Mục tiêu</button><button type="button" id="tab-knowledge">Kiến thức</button><button type="button" id="tab-practice">Thực hành</button><button type="button" id="tab-quiz">Luyện tập</button><button type="button" id="tab-summary">Tổng kết</button><button type="button" id="tab-teacher">Công cụ GV</button>
+</nav>
+
+<section id="start" class="section active">
+<h2>1. Khởi động: Một bình luận, nhiều hệ quả</h2>
+<div class="scenario"><div class="icon">📱</div><p>Trong nhóm lớp, một bạn đăng ảnh chụp bài làm của bạn khác kèm lời bình luận chế giễu. Một số bạn thả biểu tượng cười và chia sẻ tiếp. Em nhìn thấy bài đăng này.</p></div>
+<p><strong>Câu hỏi dự đoán:</strong> Em nên làm gì trước tiên để góp phần giải quyết tình huống?</p>
+<div class="choices" id="warmChoices">
+<button type="button" class="choice" data-warm="0">A. Chia sẻ bài đăng để nhiều người biết chuyện.</button>
+<button type="button" class="choice" data-warm="1">B. Không phát tán thêm; cân nhắc nhắc nhở riêng, lưu bằng chứng cần thiết và báo người có trách nhiệm nếu sự việc nghiêm trọng.</button>
+<button type="button" class="choice" data-warm="2">C. Bình luận công kích lại người đăng.</button>
+</div><div id="warmFeedback" class="feedback" aria-live="polite">Chọn một phương án để xem phản hồi.</div>
+<div class="row"><button type="button" id="goGoals">Bắt đầu bài học →</button></div>
+</section>
+
+<section id="goals" class="section">
+<h2>2. Mục tiêu bài học</h2>
+<div class="grid">
+<div class="tile"><span class="icon">🧠</span><strong>Nhận biết</strong>Nhận biết đặc điểm giao tiếp trực tuyến và các nguy cơ khi đăng, bình luận, chia sẻ nội dung.</div>
+<div class="tile"><span class="icon">🤝</span><strong>Ứng xử có văn hóa</strong>Giao tiếp tôn trọng, lịch sự, có trách nhiệm; biết cân nhắc trước khi đăng tải.</div>
+<div class="tile"><span class="icon">🛡️</span><strong>An toàn và pháp luật</strong>Tôn trọng quyền riêng tư, danh dự, bản quyền; biết báo cáo nội dung gây hại qua kênh phù hợp.</div>
+<div class="tile"><span class="icon">🔎</span><strong>Vận dụng</strong>Phân tích tình huống và lựa chọn cách xử lí phù hợp trong không gian mạng.</div>
+</div>
+<div class="callout"><strong>Tiêu chí thành công:</strong> Em giải thích được vì sao một lựa chọn phù hợp, nhận diện được ít nhất ba nguyên tắc ứng xử và đạt từ 4/5 câu luyện tập.</div>
+<button type="button" id="goKnowledge">Tiếp tục: Kiến thức mới →</button>
+</section>
+
+<section id="knowledge" class="section">
+<h2>3. Kiến thức mới</h2>
+<h3>3.1. Giao tiếp trong không gian mạng có gì đặc biệt?</h3>
+<p>Giao tiếp trực tuyến diễn ra qua mạng xã hội, diễn đàn, thư điện tử, ứng dụng nhắn tin và nền tảng học tập. Người giao tiếp có thể không gặp mặt trực tiếp; giọng điệu và cảm xúc dễ bị hiểu nhầm; nội dung có thể được sao chép, lưu lại hoặc lan truyền nhanh.</p>
+<div class="grid three">
+<div class="tile"><strong>🌐 Phạm vi rộng</strong>Thông tin có thể đến với nhiều người ngoài dự kiến.</div>
+<div class="tile"><strong>🧾 Dấu vết số</strong>Bài đăng, ảnh chụp màn hình có thể còn tồn tại sau khi xóa.</div>
+<div class="tile"><strong>🙂 Thiếu ngữ cảnh</strong>Tin nhắn ngắn dễ bị hiểu sai ý định hoặc cảm xúc.</div>
+</div>
+<h3>3.2. Nguyên tắc ứng xử văn minh</h3>
+<div class="grid">
+<div class="tile"><strong>1. Tôn trọng</strong>Dùng ngôn từ lịch sự; không xúc phạm, bắt nạt, kỳ thị hay làm nhục người khác.</div>
+<div class="tile"><strong>2. Kiểm chứng</strong>Đọc kỹ nguồn, thời điểm và ngữ cảnh trước khi tin hoặc chia sẻ thông tin.</div>
+<div class="tile"><strong>3. Bảo vệ riêng tư</strong>Xin phép trước khi đăng ảnh, thông tin cá nhân hoặc nội dung trao đổi riêng của người khác.</div>
+<div class="tile"><strong>4. Chịu trách nhiệm</strong>Suy nghĩ về tác động, tôn trọng bản quyền và quy định; sửa sai khi đăng nhầm.</div>
+</div>
+<h3>3.3. Trước khi nhấn “Đăng” – dừng lại 4 bước</h3>
+<div class="mindmap" role="img" aria-label="Sơ đồ bốn bước: Dừng lại, Kiểm chứng, Tôn trọng, Chịu trách nhiệm">
+<div class="mindroot">DỪNG LẠI TRƯỚC KHI ĐĂNG</div><div class="branches">
+<div class="branch"><b>🛑 Dừng</b>Đang nóng giận? Chờ bình tĩnh.</div><div class="branch"><b>🔍 Kiểm chứng</b>Nguồn tin có đáng tin không?</div><div class="branch"><b>💙 Tôn trọng</b>Có xâm phạm ai không?</div>
+</div><div class="branch" style="width:100%"><b>✅ Chịu trách nhiệm</b>Nếu nội dung bị chia sẻ rộng, hậu quả có thể là gì? Có cách diễn đạt an toàn hơn không?</div></div>
+<h3>3.4. Khi gặp nội dung gây hại</h3>
+<ol><li>Không hùa theo, không phát tán lại nội dung gây tổn thương.</li><li>Góp ý bình tĩnh và riêng tư nếu phù hợp, không làm tình hình căng thẳng hơn.</li><li>Lưu lại thông tin cần thiết một cách an toàn; không chỉnh sửa hoặc công khai phát tán bằng chứng.</li><li>Báo cáo nền tảng, giáo viên, cha mẹ hoặc người có trách nhiệm khi có dấu hiệu bắt nạt, đe dọa hay xâm phạm riêng tư.</li></ol>
+<div class="callout">Lưu ý: Cách xử lí cần phù hợp với mức độ sự việc. Nếu có nguy cơ an toàn, hãy tìm người lớn đáng tin cậy hoặc kênh hỗ trợ chính thức; không tự đối đầu khi điều đó có thể làm tình hình nguy hiểm hơn.</div>
+<button type="button" id="goPractice">Khám phá tình huống →</button>
+</section>
+
+<section id="practice" class="section">
+<h2>4. Phòng thực hành ứng xử số</h2>
+<p class="muted">Nhiệm vụ: thử lựa chọn cách phản hồi trong một tình huống giả định. Hãy dự đoán hệ quả trước khi chọn; đây là mô phỏng ra quyết định, không phải công cụ chạy mã lập trình.</p>
+<div class="scenario">
+<strong>Tình huống: Tin nhắn gây hiểu lầm</strong>
+<div class="bubble">Bạn cùng nhóm nhắn: “Phần của bạn làm thế này mà cũng nộp à?” Em cảm thấy khó chịu và muốn trả lời ngay trong nhóm lớp.</div>
+<p><strong>Dự đoán:</strong> Cách nào có khả năng giải quyết vấn đề tốt hơn mà không làm xung đột lan rộng?</p>
+<div class="choices" id="simChoices">
+<button type="button" class="choice" data-sim="0">A. Đáp trả bằng lời xúc phạm để “công bằng”.</button>
+<button type="button" class="choice" data-sim="1">B. Tạm dừng, hỏi rõ ý bạn, trao đổi tập trung vào bài làm và đề nghị góp ý cụ thể.</button>
+<button type="button" class="choice" data-sim="2">C. Chụp màn hình rồi đăng công khai để mọi người phán xét.</button>
+</div>
+<div id="simFeedback" class="feedback" aria-live="polite">Chọn phương án để xem hệ quả dự kiến.</div>
+<div class="row"><button type="button" class="secondary" id="resetSim">Đặt lại tình huống</button></div>
+</div>
+<h3>Thử áp dụng quy tắc “Dừng – Kiểm chứng – Tôn trọng – Chịu trách nhiệm”</h3>
+<div class="grid">
+<div class="tile"><strong>Bước 1 · Dừng</strong>Em sẽ làm gì để tránh phản ứng khi đang tức giận?<textarea id="step1" rows="2" placeholder="Ví dụ: chờ bình tĩnh trước khi trả lời..."></textarea></div>
+<div class="tile"><strong>Bước 2 · Kiểm chứng</strong>Em cần hỏi hoặc xác minh điều gì?<textarea id="step2" rows="2" placeholder="Ví dụ: hỏi bạn muốn góp ý cụ thể phần nào..."></textarea></div>
+<div class="tile"><strong>Bước 3 · Tôn trọng</strong>Hãy viết một câu trả lời lịch sự.<textarea id="step3" rows="2" placeholder="Ví dụ: Bạn góp ý cụ thể giúp mình nhé..."></textarea></div>
+<div class="tile"><strong>Bước 4 · Chịu trách nhiệm</strong>Nếu trao đổi tiếp tục căng thẳng, em sẽ làm gì?<textarea id="step4" rows="2" placeholder="Ví dụ: chuyển sang trao đổi riêng hoặc nhờ giáo viên..."></textarea></div>
+</div>
+<button type="button" id="showReflection">Xem gợi ý tự đánh giá</button><div id="reflection" class="feedback" hidden aria-live="polite">Một phản hồi tốt nên bình tĩnh, không công kích cá nhân, tập trung vào vấn đề và có phương án tìm hỗ trợ nếu cần.</div>
+<button type="button" id="goQuiz">Làm 5 câu luyện tập →</button>
+</section>
+
+<section id="quiz" class="section">
+<h2>5. Luyện tập nhanh</h2>
+<p class="muted">Chọn một đáp án cho mỗi câu. Phản hồi giải thích sẽ xuất hiện ngay; chỉ sau khi trả lời, em mới chuyển được sang câu kế tiếp.</p>
+<div class="row"><strong id="qCounter">Câu 1/5</strong><span class="muted" id="qScore">Đúng: 0</span></div>
+<div class="progress" aria-label="Tiến độ luyện tập"><span id="qProgress"></span></div>
+<h3 id="qText">Một người bạn đăng ảnh của em lên nhóm công khai mà chưa hỏi ý kiến. Em nên làm gì?</h3>
+<div id="qChoices" class="choices">
+<button type="button" class="choice">Yêu cầu bạn gỡ ảnh hoặc xin phép trước khi đăng.</button>
+<button type="button" class="choice">Chia sẻ ảnh lên nhiều nhóm khác.</button>
+<button type="button" class="choice">Đăng thông tin riêng tư của bạn để trả đũa.</button>
+</div>
+<div id="qFeedback" class="feedback" aria-live="polite">Chọn đáp án để nhận phản hồi.</div>
+<div class="row"><button type="button" id="nextQ" disabled>Câu tiếp theo →</button><button type="button" class="secondary" id="restartQuiz">Làm lại</button></div>
+<div id="quizEnd" class="bluebox" hidden aria-live="polite"></div>
+</section>
+
+<section id="summary" class="section">
+<h2>6. Tổng kết kiến thức</h2>
+<div class="grid">
+<div class="tile"><strong>💬 Giao tiếp văn minh</strong>Tôn trọng, lịch sự, không công kích hay bắt nạt.</div>
+<div class="tile"><strong>🔍 Chia sẻ có trách nhiệm</strong>Kiểm chứng thông tin trước khi tin và chia sẻ.</div>
+<div class="tile"><strong>🔐 Bảo vệ quyền riêng tư</strong>Xin phép trước khi đăng dữ liệu, hình ảnh của người khác.</div>
+<div class="tile"><strong>🧭 Xử lí nội dung gây hại</strong>Không phát tán; báo cáo và tìm hỗ trợ phù hợp.</div>
+</div>
+<div class="callout"><strong>Câu hỏi kết luận:</strong> Trước khi gửi một bình luận hoặc chia sẻ một bài viết, em sẽ tự hỏi điều gì? Hãy tự trả lời: “Thông tin này có đúng không? Có tôn trọng người khác không? Có thể gây hại gì? Mình có chịu trách nhiệm với việc chia sẻ này không?”</div>
+<div class="score" id="finalScore">Điểm luyện tập: Chưa hoàn thành</div>
+<button type="button" id="backQuiz">Ôn tập lại</button>
+</section>
+
+<section id="teacher" class="section">
+<h2>7. Công cụ giáo viên: Vòng quay gọi học sinh</h2>
+<p>Nhập tên học sinh, mỗi dòng một tên. Vòng quay chọn ngẫu nhiên trong số tên chưa được gọi ở lượt hiện tại và tránh lặp lại cho đến khi hết danh sách.</p>
+<label for="names"><strong>Danh sách học sinh</strong></label>
+<textarea id="names" class="student-list" rows="5">An
+Bình
+Chi
+Dũng
+Hà
+Minh
+Phương
+Quân</textarea>
+<div class="row" style="margin-top:12px"><button type="button" id="loadNames">Nạp danh sách</button><button type="button" class="yellow" id="spin">🎡 Quay chọn</button><button type="button" class="secondary" id="resetWheel">Đặt lại lượt gọi</button></div>
+<div class="wheel" id="wheel" aria-live="polite">Sẵn sàng<br>quay chọn</div>
+<div id="wheelStatus" class="status" aria-live="polite">Chưa quay lượt nào.</div>
+<h3>Lịch sử lượt gọi</h3><ol id="history"><li>Chưa có học sinh được chọn.</li></ol>
+<div class="callout small">Gợi ý tổ chức: dùng vòng quay để tăng sự tham gia tích cực; cho học sinh quyền xin hỗ trợ hoặc bỏ lượt khi có lý do phù hợp. Tên trong danh sách chỉ được xử lí trong trang hiện tại.</div>
+</section>
+<footer>Bài học tương tác · Tin học 12 · Chủ đề 3: Đạo đức, pháp luật và văn hoá trong môi trường số</footer>
+</main>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  try {
+    document.documentElement.classList.add('js-enabled');
+    const ids = ['start','goals','knowledge','practice','quiz','summary','teacher'];
+    function showSection(id) {
+      ids.forEach(function (key) {
+        const section = document.getElementById(key);
+        const tab = document.getElementById('tab-' + key);
+        if (section) section.classList.toggle('active', key === id);
+        if (tab) { tab.classList.toggle('active', key === id); tab.setAttribute('aria-current', key === id ? 'page' : 'false'); }
+      });
+      const target = document.getElementById(id);
+      if (target) target.scrollIntoView({behavior:'smooth',block:'start'});
+    }
+    ids.forEach(function (id) {
+      const tab = document.getElementById('tab-' + id);
+      if (tab) tab.addEventListener('click', function () { showSection(id); });
+    });
+    [['goGoals','goals'],['goKnowledge','knowledge'],['goPractice','practice'],['goQuiz','quiz'],['backQuiz','quiz']].forEach(function (pair) {
+      const button = document.getElementById(pair[0]);
+      if (button) button.addEventListener('click', function () { showSection(pair[1]); });
+    });
+  } catch (error) { console.error('Lỗi khởi tạo điều hướng:', error); }
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  try {
+    const warmAnswers = document.querySelectorAll('[data-warm]');
+    warmAnswers.forEach(function (button) {
+      button.addEventListener('click', function () {
+        warmAnswers.forEach(function (b) { b.classList.remove('correct','wrong'); });
+        const feedback = document.getElementById('warmFeedback');
+        if (button.dataset.warm === '1') {
+          button.classList.add('correct');
+          feedback.className = 'feedback good';
+          feedback.textContent = 'Đúng hướng: không phát tán thêm giúp hạn chế tổn thương. Hãy trao đổi bình tĩnh và báo người có trách nhiệm nếu sự việc nghiêm trọng.';
+        } else {
+          button.classList.add('wrong');
+          feedback.className = 'feedback bad';
+          feedback.textContent = 'Hãy thử nghĩ về hậu quả: chia sẻ hoặc công kích có thể làm tổn thương lan rộng. Gợi ý: không phát tán, ưu tiên hỗ trợ an toàn và báo người có trách nhiệm khi cần.';
+        }
+      });
+    });
+    const simAnswers = document.querySelectorAll('[data-sim]');
+    const simText = [
+      'Hệ quả có thể xảy ra: xung đột leo thang, nhóm lớp trở nên căng thẳng. Gợi ý: tập trung vào vấn đề, không công kích cá nhân.',
+      'Lựa chọn phù hợp nhất: tạm dừng giúp kiểm soát cảm xúc; hỏi rõ ý định và yêu cầu góp ý cụ thể giúp giải quyết vấn đề mà vẫn tôn trọng nhau.',
+      'Công khai ảnh chụp có thể làm lộ trao đổi riêng và khiến mâu thuẫn lan rộng. Gợi ý: trao đổi riêng hoặc nhờ giáo viên hỗ trợ nếu cần.'
+    ];
+    simAnswers.forEach(function (button) {
+      button.addEventListener('click', function () {
+        simAnswers.forEach(function (b) { b.classList.remove('correct','wrong'); });
+        const good = button.dataset.sim === '1';
+        button.classList.add(good ? 'correct' : 'wrong');
+        const feedback = document.getElementById('simFeedback');
+        feedback.className = 'feedback ' + (good ? 'good' : 'bad');
+        feedback.textContent = simText[Number(button.dataset.sim)];
+      });
+    });
+    const resetSim = document.getElementById('resetSim');
+    if (resetSim) resetSim.addEventListener('click', function () {
+      simAnswers.forEach(function (b) { b.classList.remove('correct','wrong'); });
+      const feedback = document.getElementById('simFeedback');
+      feedback.className = 'feedback'; feedback.textContent = 'Chọn phương án để xem hệ quả dự kiến.';
+      ['step1','step2','step3','step4'].forEach(function(id){const el=document.getElementById(id);if(el)el.value='';});
+    });
+    const reflectBtn = document.getElementById('showReflection');
+    if (reflectBtn) reflectBtn.addEventListener('click', function () {
+      const panel = document.getElementById('reflection');
+      if (panel) { panel.hidden = !panel.hidden; reflectBtn.textContent = panel.hidden ? 'Xem gợi ý tự đánh giá' : 'Ẩn gợi ý tự đánh giá'; }
+    });
+  } catch (error) { console.error('Lỗi khởi tạo mô phỏng:', error); }
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const questions = [
+    {q:'Một người bạn đăng ảnh của em lên nhóm công khai mà chưa hỏi ý kiến. Em nên làm gì?',a:['Yêu cầu bạn gỡ ảnh hoặc xin phép trước khi đăng.','Chia sẻ ảnh lên nhiều nhóm khác.','Đăng thông tin riêng tư của bạn để trả đũa.'],c:0,e:'Tôn trọng quyền riêng tư: nên trao đổi rõ ràng và đề nghị gỡ ảnh hoặc xin phép trước khi đăng.'},
+    {q:'Em nhận được tin nhắn nói rằng trường sẽ nghỉ học ngày mai nhưng không có nguồn chính thức. Em nên làm gì?',a:['Chuyển tiếp ngay để mọi người biết.','Kiểm tra thông báo từ trường hoặc giáo viên trước khi chia sẻ.','Thêm thông tin cho tin nhắn hấp dẫn hơn.'],c:1,e:'Kiểm chứng nguồn tin giúp hạn chế tin sai lệch và tránh gây hoang mang.'},
+    {q:'Một bình luận khiến em tức giận. Cách phản hồi nào phù hợp nhất?',a:['Dùng lời lẽ xúc phạm lại.','Đăng thông tin cá nhân của người bình luận.','Tạm dừng, bình tĩnh và trao đổi tập trung vào vấn đề.'],c:2,e:'Bình tĩnh và tập trung vào vấn đề giúp giảm nguy cơ xung đột leo thang.'},
+    {q:'Em muốn dùng hình ảnh tìm được trên mạng cho bài thuyết trình. Em nên làm gì?',a:['Kiểm tra điều kiện sử dụng, ghi nguồn và xin phép nếu cần.','Mặc định mọi ảnh trên mạng đều được tự do sử dụng.','Xóa tên tác giả để slide gọn hơn.'],c:0,e:'Tôn trọng bản quyền nghĩa là kiểm tra giấy phép, ghi nguồn và xin phép khi cần thiết.'},
+    {q:'Em thấy một bạn bị chế giễu liên tục trong nhóm lớp. Hành động nào có trách nhiệm?',a:['Thả biểu tượng cười để hòa theo nhóm.','Không phát tán thêm, hỗ trợ bạn và báo người có trách nhiệm khi cần.','Chụp lại rồi đăng lên mạng xã hội công khai.'],c:1,e:'Không tiếp tay cho nội dung gây hại; hỗ trợ người bị ảnh hưởng và báo kênh phù hợp giúp xử lí an toàn hơn.'}
+  ];
+  let index = 0, score = 0, answered = false, locked = false;
+  const qText=document.getElementById('qText'), qChoices=document.getElementById('qChoices'), qFeedback=document.getElementById('qFeedback');
+  const next=document.getElementById('nextQ'), restart=document.getElementById('restartQuiz');
+  function renderQuestion() {
+    if (!qText || !qChoices) return;
+    answered=false; locked=false;
+    const q=questions[index];
+    document.getElementById('qCounter').textContent='Câu '+(index+1)+'/'+questions.length;
+    document.getElementById('qScore').textContent='Đúng: '+score;
+    document.getElementById('qProgress').style.width=(index/questions.length*100)+'%';
+    qText.textContent=q.q; qChoices.textContent='';
+    q.a.forEach(function(answer, i) {
+      const b=document.createElement('button'); b.type='button'; b.className='choice'; b.textContent=String.fromCharCode(65+i)+'. '+answer;
+      b.addEventListener('click', function(){chooseAnswer(i,b);}); qChoices.appendChild(b);
+    });
+    qFeedback.className='feedback'; qFeedback.textContent='Chọn đáp án để nhận phản hồi.';
+    next.disabled=true; next.textContent=index===questions.length-1?'Xem kết quả':'Câu tiếp theo →';
+    document.getElementById('quizEnd').hidden=true;
+  }
+  function chooseAnswer(choice, button) {
+    if (answered || locked) return;
+    answered=true;
+    const q=questions[index], correct=choice===q.c;
+    if(correct) score++;
+    Array.from(qChoices.querySelectorAll('button')).forEach(function(b,i){b.disabled=true;if(i===q.c)b.classList.add('correct');else if(i===choice)b.classList.add('wrong');});
+    qFeedback.className='feedback '+(correct?'good':'bad');
+    qFeedback.textContent=(correct?'Chính xác! ':'Chưa đúng. Gợi ý: hãy nghĩ đến sự tôn trọng, kiểm chứng và trách nhiệm. ')+q.e;
+    document.getElementById('qScore').textContent='Đúng: '+score;
+    document.getElementById('qProgress').style.width=((index+1)/questions.length*100)+'%';
+    next.disabled=false;
+  }
+  if(next) next.addEventListener('click',function(){
+    if(!answered || locked) return;
+    if(index<questions.length-1){index++;renderQuestion();}
+    else {
+      locked=true; next.disabled=true;
+      const end=document.getElementById('quizEnd'); end.hidden=false;
+      end.innerHTML='<strong>Hoàn thành luyện tập!</strong><p class="score">'+score+'/'+questions.length+' câu đúng ('+Math.round(score/questions.length*100)+'%)</p><p>'+(score>=4?'Em đã nắm khá tốt các nguyên tắc ứng xử số.':'Hãy xem lại các nguyên tắc và thử làm lại để củng cố kiến thức.')+'</p>';
+      document.getElementById('qProgress').style.width='100%';
+      document.getElementById('finalScore').textContent='Điểm luyện tập: '+score+'/'+questions.length+' câu đúng';
+      qFeedback.textContent='Đã hoàn thành 5 câu. Chọn “Làm lại” nếu muốn luyện tập lần nữa.';
+    }
+  });
+  if(restart) restart.addEventListener('click',function(){index=0;score=0;answered=false;locked=false;renderQuestion();document.getElementById('finalScore').textContent='Điểm luyện tập: Chưa hoàn thành';});
+  try { renderQuestion(); } catch(error) { if(qText)qText.textContent='Không thể tải câu hỏi. Vui lòng tải lại trang.'; console.error('Lỗi phần câu hỏi:',error); }
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  try {
+    const namesArea=document.getElementById('names'), wheel=document.getElementById('wheel'), status=document.getElementById('wheelStatus'), history=document.getElementById('history');
+    let remaining=[], called=[];
+    const NEWLINE=String.fromCharCode(10);
+    function parseNames(){return namesArea.value.replaceAll(String.fromCharCode(13),'').split(NEWLINE).map(function(n){return n.trim();}).filter(Boolean);}
+    function renderHistory(){
+      history.textContent='';
+      if(!called.length){const li=document.createElement('li');li.textContent='Chưa có học sinh được chọn.';history.appendChild(li);return;}
+      called.forEach(function(n){const li=document.createElement('li');li.textContent=n;history.appendChild(li);});
+    }
+    const load=document.getElementById('loadNames'), spin=document.getElementById('spin'), reset=document.getElementById('resetWheel');
+    if(load) load.addEventListener('click',function(){
+      const list=parseNames(), unique=Array.from(new Set(list));
+      if(!unique.length){status.textContent='Vui lòng nhập ít nhất một tên, mỗi dòng một tên.';return;}
+      remaining=unique.slice();called=[];wheel.textContent='Sẵn sàng quay';status.textContent='Đã nạp '+unique.length+' học sinh (đã loại tên trùng).';renderHistory();
+    });
+    if(spin) spin.addEventListener('click',function(){
+      if(!remaining.length){
+        const current=parseNames();
+        if(!current.length){status.textContent='Hãy nhập danh sách rồi chọn “Nạp danh sách”.';return;}
+        status.textContent=called.length?'Đã gọi hết danh sách. Hãy đặt lại lượt gọi để bắt đầu vòng mới.':'Hãy chọn “Nạp danh sách” trước khi quay.';return;
+      }
+      const idx=Math.floor(Math.random()*remaining.length), name=remaining.splice(idx,1)[0];
+      wheel.textContent=name;called.push(name);renderHistory();
+      status.textContent='Đã chọn '+name+'. Còn '+remaining.length+' học sinh chưa được gọi.';
+    });
+    if(reset) reset.addEventListener('click',function(){remaining=Array.from(new Set(parseNames()));called=[];wheel.textContent='Sẵn sàng quay';status.textContent='Đã đặt lại lượt gọi.';renderHistory();});
+  } catch(error) { console.error('Lỗi công cụ giáo viên:',error); }
+});
+</script>
+</body>
+</html>
